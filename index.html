@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор паролей</title>
+    <link rel="shortcut icon" href="pass_key.svg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        body {
+            background: #a8d7e1;
+        }
+
+        div {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+            transition: .15s ease-in-out;
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+            color: #F137A6;
+        }
+
+        input {
+            width: 300px;
+            font-size: 13px;
+            padding: 6px 0 4px 10px;
+            border: 1px solid #cecece;
+            background: #F6F6f6;
+            border-radius: 8px;
+        }
+        footer{
+            display: block;
+            width: 100%;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>Генератор паролей</h1>
+            <button class="generate">Генерировать пароль</button>
+            <input type="text" id="password">
+            <button class="copy">Копировать пароль</button>
+        </div>
+        <footer>
+            Ссылка на репозиторий: 
+        </footer>
+        
+    </div>
+
+    <script>
+        var password = document.getElementById("password");
+        document.querySelector(".generate").onclick = function genPassword() {
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var passwordLength = 12;
+            var password = "";
+            for (var i = 0; i <= passwordLength; i++) {
+                var randomNumber = Math.floor(Math.random() * chars.length);
+                password += chars.substring(randomNumber, randomNumber + 1);
+            }
+            document.getElementById("password").value = password;
+        }
+        document.querySelector(".copy").onclick = function copyPassword() {
+            var copyText = document.getElementById("password");
+            copyText.select();
+            document.execCommand("copy");
+        }
+    </script>
+</body>
+
+</html>
